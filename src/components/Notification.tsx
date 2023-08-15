@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const Notification = ({setHideNotification}:any) => {
+interface prop {
+  setHideNotification: (show:boolean) => void
+}
+
+const Notification = ({setHideNotification}:prop) => {
   return (
     <div className='flex items-center justify-between bg-red-500 h-10 pr-[10px]'>
         <span></span>
