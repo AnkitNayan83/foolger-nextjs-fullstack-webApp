@@ -1,8 +1,10 @@
+"use client"
 import Notification from '@/components/Notification'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
+import { useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,10 +18,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const [show,setShow] = useState(true);
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Notification/>
+        {show &&
+        <Notification setHideNotification={setShow}/>
+        }
         <Navbar/>
         {children}</body>
     </html>
