@@ -36,9 +36,6 @@ const Navbar = () => {
                 </span>
             </div>
         </div>
-        <div className='md:hidden'>
-            <Image src="/open.png" width={30} height={50} alt=''/>
-        </div>
 
     </div>
   )
