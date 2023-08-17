@@ -1,4 +1,5 @@
 import FoodCard from "@/components/FoodCard";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -19,7 +20,7 @@ export default function Home() {
             Our Best Seller's
           </h1>
         </div>
-        <div className="flex justify-around px-[10%] flex-wrap min-h-[100vh] mt-16">
+        <div className="flex justify-around px-[10%] flex-wrap min-h-[60vh] mt-16">
           <FoodCard
             img={"/temp/p1.png"}
             name="Peri Peri Pizza"
@@ -28,19 +29,24 @@ export default function Home() {
             isVeg={false}
           />
           <FoodCard
-            img={"/temp/p1.png"}
-            name="Peri Peri Pizza"
+            img={"/temp/p8.png"}
+            name="Margerita Pizza"
             price={259}
             desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad corrupti dolores repellendus sequi officia quasi explicabo"
-            isVeg={false}
+            isVeg={true}
           />
           <FoodCard
-            img={"/temp/p1.png"}
-            name="Peri Peri Pizza"
+            img={"/temp/p2.png"}
+            name="Maharaja Burgur"
             price={259}
             desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad corrupti dolores repellendus sequi officia quasi explicabo"
             isVeg={false}
           />
+        </div>
+        <div className="flex justify-center">
+          <Button className="bg-red-500 text-white rounded-[10px] py-6 px-4 w-[25%] text-[32px]">
+            Explore More !!
+          </Button>
         </div>
       </section>
     </main>
