@@ -4,7 +4,7 @@ import Menubar from './Menubar'
 
 const Navbar = () => {
   return (
-    <div className='flex items-center justify-between relative text-red-500 px-5 md:px-20 h-[60px] font-semibold border-b-4 border-red-500'>
+    <div className='flex items-center justify-between relative text-red-500 px-5 md:px-20 h-[60px] font-semibold '>
         {/* left */}
         <div className='hidden md:flex items-center gap-[20px]'>
             <span className='after:content-[""] after:block after:w-0 after:h-[3px] after:m-auto after:bg-red-500 after:transition-all after:ease-in-out after:delay-150 hover:after:w-[100%] cursor-pointer'>Home</span>
