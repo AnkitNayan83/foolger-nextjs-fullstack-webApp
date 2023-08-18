@@ -1,5 +1,13 @@
 import FoodCard from "@/components/FoodCard";
+import OfferCard from "@/components/OfferCard";
 import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Foogler",
+  description:
+    "Foogler is a food app on which you can order food at any time!!",
+};
 
 export default function Home() {
   return (
@@ -14,13 +22,13 @@ export default function Home() {
           </p>
         </div>
       </section>
-      <section className="my-10">
+      <section className="mt-10">
         <div className="flex items-center justify-center">
           <h1 className="text-[32px] font-semibold border-r-4 border-r-red-500 pr-1">
             Our Best Seller's
           </h1>
         </div>
-        <div className="flex justify-around px-[10%] flex-wrap min-h-[60vh] mt-16">
+        <div className="flex justify-around px-[10px] flex-wrap min-h-[60vh] mt-16">
           <FoodCard
             img={"/temp/p1.png"}
             name="Peri Peri Pizza"
@@ -44,10 +52,11 @@ export default function Home() {
           />
         </div>
         <div className="flex justify-center">
-          <Button className="bg-red-500 text-white rounded-[10px] py-6 px-4 w-[25%] text-[32px]">
+          <Button className="bg-red-500 text-white rounded-[10px] py-6 px-4 md:w-[25%] text-[32px]">
             Explore More !!
           </Button>
         </div>
+        <OfferCard />
       </section>
     </main>
   );
