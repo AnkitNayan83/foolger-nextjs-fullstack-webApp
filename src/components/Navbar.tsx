@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import Menubar from "./Menubar";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 const Navbar = () => {
   return (
@@ -63,6 +64,9 @@ const Navbar = () => {
             </span>
           </Link>
         </div>
+        <Link href={"/login"}>
+          <Button className="bg-red-500 hover:bg-red-300">Login/Signup</Button>
+        </Link>
       </div>
     </div>
   );
