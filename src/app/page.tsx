@@ -25,7 +25,7 @@ export default function Home() {
       <section className="mt-10">
         <div className="flex items-center justify-center">
           <h1 className="text-[32px] font-semibold border-r-4 border-r-red-500 pr-1">
-            Our Best Seller's
+            Our Best Seller&apos;s
           </h1>
         </div>
         <div className="flex justify-around px-[10px] flex-wrap min-h-[60vh] mt-16">
