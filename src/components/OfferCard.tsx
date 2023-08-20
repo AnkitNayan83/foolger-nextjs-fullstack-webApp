@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 const OfferCard = () => {
   return (
@@ -14,7 +15,9 @@ const OfferCard = () => {
         </h1>
         <h2 className="font-bold text-xl">Use Code: WELCOME20</h2>
         <span className="text-gray-400">Terms and conditions applied*</span>
-        <Button className="w-[35%] md:[25%] mb-2 md:mb-0">Order Now</Button>
+        <Link href={"/menu"}>
+          <Button className="w-[35%] md:[25%] mb-2 md:mb-0">Order Now</Button>
+        </Link>
       </div>
     </div>
   );
