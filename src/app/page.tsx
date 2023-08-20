@@ -53,7 +53,7 @@ export default function Home() {
           />
         </div>
         <div className="flex justify-center">
-          <Link href={"/menu"}>
+          <Link href={"/menu"} className="w-full flex justify-center mt-10">
             <Button className="bg-red-500 text-white rounded-[10px] py-6 px-4 md:w-[25%] text-[32px]">
               Explore More !!
             </Button>
