@@ -8,7 +8,30 @@ export const metadata: Metadata = {
     "Foogler is a food app on which you can order food at any time!!",
 };
 
-const Menu = () => {
+interface Item {
+  name: string;
+  id: string;
+  createdAt: Date;
+  title: string;
+  desc: string;
+  color: string;
+  img: string;
+  slug: string;
+}
+
+const getMenu = async () => {
+  const res = await fetch("http://localhost:3000/api/categories", {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed");
+  }
+  return res.json();
+};
+
+const Menu = async () => {
+  const menu = await getMenu();
   return (
     <div className="min-h-[90vh]">
       <div className="p-16">
@@ -17,24 +40,19 @@ const Menu = () => {
         </span>
       </div>
       <div className="flex flex-col items-center justify-center gap-10 my-6">
-        <Menucard
-          img={"/temp/m3.png"}
-          name="pizza"
-          desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, porro necessitatibus iste repellendus quisquam laudantium quibusdam qui ipsum, accusamus cumque ullam praesentium. Sit rerum, unde nemo quam dolorum reiciendis perspiciatis."
-        />
-        <Menucard
-          img={"/temp/m1.png"}
-          name="Noodles"
-          desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, porro necessitatibus iste repellendus quisquam laudantium quibusdam qui ipsum, accusamus cumque ullam praesentium. Sit rerum, unde nemo quam dolorum reiciendis perspiciatis."
-        />
-        <Menucard
-          img={"/temp/m2.png"}
-          name="Burgur"
-          desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, porro necessitatibus iste repellendus quisquam laudantium quibusdam qui ipsum, accusamus cumque ullam praesentium. Sit rerum, unde nemo quam dolorum reiciendis perspiciatis."
-        />
+        {menu.categories.map((item: Item) => (
+          <Menucard
+            img={item.img}
+            name={item.title}
+            desc={item.desc}
+            key={item.id}
+          />
+        ))}
       </div>
     </div>
   );
 };
 
 export default Menu;
+
+//30:00
