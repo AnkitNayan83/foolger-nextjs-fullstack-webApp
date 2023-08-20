@@ -13,7 +13,7 @@ type prop = {
 
 const CartCard = ({ img, name, price, desc, isVeg, qty }: prop) => {
   return (
-    <div className="flex flex-col md:flex-row md:items-center shadow-[0_5px_40px_-15px_rgba(0,0,0,0.8)]  rounded-md w-[100%] pr-5">
+    <div className="flex flex-col md:flex-row md:items-center shadow-[0_5px_40px_-15px_rgba(0,0,0,0.8)]  rounded-md w-[100%] p-5 ">
       <div className="md:flex-1 h-[250px] relative">
         <Image src={img} fill={true} alt="" className="object-contain" />
       </div>

@@ -3,7 +3,7 @@ import React from "react";
 
 const Login = () => {
   return (
-    <div className="h-[95vh] flex items-center">
+    <div className="h-[95vh] flex items-center  text-red-500">
       <div className="flex-1 h-[40vh] md:h-full mb-20 md:mb-0 relative hidden md:block">
         <Image src={"/s1.jpeg"} alt="" fill={true} className="object-cover" />
       </div>

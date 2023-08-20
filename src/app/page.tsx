@@ -2,6 +2,7 @@ import FoodCard from "@/components/FoodCard";
 import OfferCard from "@/components/OfferCard";
 import { Button } from "@/components/ui/button";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Foogler",
@@ -52,9 +53,11 @@ export default function Home() {
           />
         </div>
         <div className="flex justify-center">
-          <Button className="bg-red-500 text-white rounded-[10px] py-6 px-4 md:w-[25%] text-[32px]">
-            Explore More !!
-          </Button>
+          <Link href={"/menu"}>
+            <Button className="bg-red-500 text-white rounded-[10px] py-6 px-4 md:w-[25%] text-[32px]">
+              Explore More !!
+            </Button>
+          </Link>
         </div>
         <OfferCard />
       </section>
