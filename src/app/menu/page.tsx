@@ -42,12 +42,10 @@ const Menu = async () => {
       <div className="flex flex-col items-center justify-center gap-10 my-6">
         {menu.categories.map((item: Item, i: any) => (
           <Menucard
-            img={item.img || "/temp/m1.png"}
-            name={item.title || "test"}
-            desc={
-              item.desc ||
-              " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet eum voluptates numquam amet dolorum rem voluptatum ut, beatae hic voluptatibus neque doloribus, ex quaerat placeat quod id ipsum! Earum, rerum. "
-            }
+            img={item.img}
+            name={item.title}
+            desc={item.desc}
+            cat={item.slug}
             key={i}
           />
         ))}

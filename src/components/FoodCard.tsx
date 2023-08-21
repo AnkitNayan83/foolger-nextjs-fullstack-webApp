@@ -29,7 +29,7 @@ const FoodCard = ({ img, name, desc, price, isVeg }: prop) => {
   };
 
   return (
-    <div className="w-[300px] h-[450px] overflow-auto mb-7 rounded-[10px] flex flex-col items-center gap-2 shadow-[0_5px_60px_-15px_rgba(0,0,0,0.8)] hover:scale-110 transition-all ease-in-out delay-100 cursor-default">
+    <div className="w-[300px] h-[500px] overflow-auto mb-7 rounded-[10px] flex flex-col items-center justify-between shadow-[0_5px_60px_-15px_rgba(0,0,0,0.8)] hover:scale-110 transition-all ease-in-out delay-100 cursor-default py-4">
       <Image
         src={img}
         width={200}
