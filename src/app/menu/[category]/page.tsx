@@ -23,7 +23,7 @@ const MenuCategory = async ({ params }: Props) => {
       <h1 className="capitalize  text-[32px] font-bold mt-7">
         {params.category} 😄
       </h1>
-      <div className="flex items-center flex-wrap gap-16  mt-10 px-16">
+      <div className="flex items-center flex-wrap gap-14  mt-10 px-16">
         {data.map((item: any, i: any) => (
           <FoodCard
             name={item.name}
