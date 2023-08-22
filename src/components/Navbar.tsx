@@ -3,6 +3,7 @@ import React from "react";
 import Menubar from "./Menubar";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import UserLinks from "./UserLinks";
 
 const Navbar = () => {
   return (
@@ -51,11 +52,6 @@ const Navbar = () => {
           />
           <span>123 456 789</span>
         </span>
-        <Link href="/orders">
-          <span className='after:content-[""] after:block after:w-0 after:h-[3px] after:m-auto after:bg-red-500 after:transition-all after:ease-in-out after:delay-150 hover:after:w-[100%] cursor-pointer'>
-            Orders
-          </span>
-        </Link>
         <div className='after:content-[""] after:block after:w-0 after:h-[3px] after:m-auto after:bg-red-500 after:transition-all after:ease-in-out after:delay-150 hover:after:w-[100%] cursor-pointer'>
           <Link href={"/cart"}>
             <span className="flex items-center gap-[5px]">
@@ -64,9 +60,7 @@ const Navbar = () => {
             </span>
           </Link>
         </div>
-        <Link href={"/login"}>
-          <Button className="bg-red-500 hover:bg-red-300">Login/Signup</Button>
-        </Link>
+        <UserLinks />
       </div>
     </div>
   );

@@ -10,7 +10,32 @@ export const metadata: Metadata = {
     "Foogler is a food app on which you can order food at any time!!",
 };
 
-export default function Home() {
+type Products = {
+  id: string;
+  createdAt: Date;
+  title: string;
+  desc: string;
+  img: string;
+  price: number;
+  isVeg: boolean;
+  isFeatured: boolean;
+  orderNumber: number;
+  catSlug: string;
+}[];
+
+const getFeatured = async () => {
+  const res = await fetch("http://localhost:3000/api/products", {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed");
+  }
+  return res.json();
+};
+
+export default async function Home() {
+  const data: Products = await getFeatured();
   return (
     <main>
       <section className="h-[calc(100vh-100px)] flex items-center justify-center  bg-[linear-gradient(to_bottom,rgba(0,0,0,0.3),rgba(0,0,0,1)),url('../../public/land.jpg')] bg-cover bg-no-repeat bg-center">
@@ -30,27 +55,16 @@ export default function Home() {
           </h1>
         </div>
         <div className="flex justify-around px-[10px] flex-wrap min-h-[60vh] mt-16">
-          <FoodCard
-            img={"/temp/p1.png"}
-            name="Peri Peri Pizza"
-            price={259}
-            desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad corrupti dolores repellendus sequi officia quasi explicabo"
-            isVeg={false}
-          />
-          <FoodCard
-            img={"/temp/p8.png"}
-            name="Margerita Pizza"
-            price={259}
-            desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad corrupti dolores repellendus sequi officia quasi explicabo"
-            isVeg={true}
-          />
-          <FoodCard
-            img={"/temp/p2.png"}
-            name="Maharaja Burgur"
-            price={259}
-            desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad corrupti dolores repellendus sequi officia quasi explicabo"
-            isVeg={false}
-          />
+          {data.map((item, i) => (
+            <FoodCard
+              img={item.img}
+              name={item.title}
+              price={item.price}
+              desc={item.desc}
+              isVeg={item.isVeg}
+              key={i}
+            />
+          ))}
         </div>
         <div className="flex justify-center">
           <Link href={"/menu"} className="w-full flex justify-center mt-10">
