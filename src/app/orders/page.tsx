@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 
 const Orders = () => {
-  const { status } = useSession();
+  const { data: session, status } = useSession();
   const { isLoading, error, data } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
@@ -35,14 +35,14 @@ const Orders = () => {
       <div className="flex flex-col items-center justify-center gap-10 p-10">
         {data?.map((item: any) => (
           <OrderCard
-            name={item.products[0].title}
-            desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium eius dolor sapiente temporibus, nisi impedit explicabo esse quas"
+            products={item.products}
             price={item.price}
-            isVeg={true}
             qty={1}
-            img="/temp/p2.png"
             status={item.status}
             key={item.id}
+            isAdmin={session?.user.isAdmin!}
+            date={item.createdAt.toString()}
+            id={item.id}
           />
         ))}
       </div>
