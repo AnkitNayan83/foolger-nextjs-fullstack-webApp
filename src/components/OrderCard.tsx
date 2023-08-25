@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 type prod = {
   title: string;
@@ -34,9 +35,24 @@ const OrderCard = ({
   isAdmin,
   id,
 }: prop) => {
-  // const handelChange = (e:React.ChangeEvent<HTMLSelectElement>,id:string):void => {
-  //   const status =
-  // };
+  const [st, setSt] = useState(status);
+  const [load, setLoad] = useState(false);
+
+  const handelChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const val = e.target.value;
+    setSt(val);
+    setLoad(true);
+    await fetch(`http://localhost:3000/api/orders/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: val }),
+      cache: "no-store",
+    });
+    toast.success("Order updated successfully");
+    setLoad(false);
+  };
   return (
     <div className="shadow-[0_5px_40px_-15px_rgba(0,0,0,0.8)] rounded-md w-[100%] px-4 md:pr-5">
       <div className="flex flex-col md:flex-row md:items-center">
@@ -74,25 +90,29 @@ const OrderCard = ({
           {!isAdmin && (
             <span
               className={
-                status === "delivered"
+                st === "delivered"
                   ? "text-green-500 font-bold text-[24px] capitalize"
                   : "text-red-500 font-bold text-[24px] capitalize"
               }
             >
-              {status}
+              {st}
             </span>
           )}
           {isAdmin && (
             <span>
-              <select
-                className="p-5 text-[24px]"
-                // onChange={(e) => handelChange(e)}
-                value={status}
-              >
-                <option value="pending">Pending</option>
-                <option value="delivered">Delivered</option>
-                <option value="cancled">Cancled</option>
-              </select>
+              {load ? (
+                <div className="text-[24px]">Loading...</div>
+              ) : (
+                <select
+                  className="p-5 text-[24px]"
+                  onChange={(e) => handelChange(e)}
+                  value={st}
+                >
+                  <option value="pending">Pending</option>
+                  <option value="delivered">Delivered</option>
+                  <option value="cancled">Cancled</option>
+                </select>
+              )}
             </span>
           )}
         </div>

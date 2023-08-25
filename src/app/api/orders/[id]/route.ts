@@ -9,7 +9,7 @@ export const PUT = async (req: NextRequest, { params }: { params: { id: string }
             where: {
                 id: id,
             },
-            data: { status: body }
+            data: body
         })
         return new NextResponse(JSON.stringify({ message: "Status updated successfully" }))
     } catch (error) {
