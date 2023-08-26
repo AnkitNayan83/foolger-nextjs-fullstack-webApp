@@ -3,27 +3,54 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useCartStore } from "@/utils/store";
 
 interface prop {
   img: string;
   name: string;
   desc: string;
   price: number;
-  isVeg: boolean;
+  isVeg: Boolean;
+  id: string;
 }
 
-const FoodCard = ({ img, name, desc, price, isVeg }: prop) => {
+const FoodCard = ({ img, name, desc, price, isVeg, id }: prop) => {
   const [count, setCount] = useState(1);
   const [isClicked, setIsclicked] = useState(false);
+  const { addToCart, removeFromCart } = useCartStore();
+
+  const handelInit = (): void => {
+    setIsclicked(true);
+    addToCart({ id, img, title: name, price, quantity: count, isVeg, desc });
+  };
 
   const handelClick = (type: string): void => {
     if (type === "add") {
       setCount(count + 1);
+      addToCart({ id, img, title: name, price, quantity: count, isVeg, desc });
     } else {
       if (count > 1) {
         setCount(count - 1);
+        addToCart({
+          id,
+          img,
+          title: name,
+          price,
+          quantity: count,
+          isVeg,
+          desc,
+        });
       } else {
         setIsclicked(false);
+        removeFromCart({
+          id,
+          img,
+          title: name,
+          price,
+          quantity: count,
+          isVeg,
+          desc,
+        });
       }
     }
   };
@@ -53,7 +80,7 @@ const FoodCard = ({ img, name, desc, price, isVeg }: prop) => {
         {!isClicked && (
           <Button
             className="text-white bg-red-500 cursor-pointer"
-            onClick={() => setIsclicked(true)}
+            onClick={handelInit}
           >
             Add to cart
           </Button>

@@ -31,6 +31,7 @@ const MenuCategory = async ({ params }: Props) => {
             desc={item.desc}
             img={item.img}
             isVeg={item.isVeg}
+            id={item.id}
             key={i}
           />
         ))}

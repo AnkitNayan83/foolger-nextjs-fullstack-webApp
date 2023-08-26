@@ -1,13 +1,16 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import Menubar from "./Menubar";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import UserLinks from "./UserLinks";
+import { useCartStore } from "@/utils/store";
 
 const Navbar = () => {
+  const { totalItems } = useCartStore();
   return (
-    <div className="flex items-center justify-between relative text-red-500 px-5 md:px-20 h-[60px] font-semibold border-b-[2px] border-b-gray-300">
+    <div className="flex items-center justify-between sticky top-0 bg-white text-red-500 px-5 md:px-20 h-[60px] font-semibold border-b-[2px] border-b-gray-300">
       {/* left */}
       <div className="hidden md:flex items-center gap-[20px]">
         <Link href="/">
@@ -56,7 +59,7 @@ const Navbar = () => {
           <Link href={"/cart"}>
             <span className="flex items-center gap-[5px]">
               <Image src="/cart.png" width={20} height={20} alt="cart" />
-              <span>Cart</span>
+              <span>Cart {totalItems ? "(" + totalItems + ")" : ""}</span>
             </span>
           </Link>
         </div>

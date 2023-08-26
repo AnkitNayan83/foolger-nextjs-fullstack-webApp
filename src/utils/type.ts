@@ -3,7 +3,7 @@ export type CartItemType = {
     title: string;
     desc: string;
     isVeg: Boolean
-    img?: string;
+    img: string;
     price: number;
     quantity: number;
 };

@@ -62,6 +62,7 @@ export default async function Home() {
               price={item.price}
               desc={item.desc}
               isVeg={item.isVeg}
+              id={item.id}
               key={i}
             />
           ))}

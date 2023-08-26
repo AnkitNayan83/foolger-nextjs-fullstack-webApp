@@ -1,5 +1,6 @@
-import { create } from "domain"
+import { create } from "zustand";
 import { ActionTypes, CartType } from "./type"
+import { persist } from "zustand/middleware";
 
 const INITIAL_STATE = {
     products: [],
