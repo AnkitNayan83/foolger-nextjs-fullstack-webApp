@@ -35,12 +35,12 @@ const Cart = () => {
           Your Cart 🛒
         </h1>
         <div className="flex flex-col-reverse md:flex-row items-start gap-4 my-16 px-6">
-          <div className="flex flex-col items-center gap-14 flex-3">
+          <div className="flex flex-col items-center gap-14 flex-3 w-[70%]">
             {products.map((item) => (
               <CartCard item={item} key={item.id} />
             ))}
           </div>
-          <div className="flex flex-2 flex-col items-center gap-6 border-2 border-gray-500 rounded-md p-4">
+          <div className="flex w-[30%] flex-2 flex-col items-center gap-6 border-2 border-gray-500 rounded-md p-4">
             <h1 className="text-3xl font-bold text-center">Order Summary</h1>
             <div className="flex items-center justify-between w-full text-xl">
               <span>Amount:</span>
