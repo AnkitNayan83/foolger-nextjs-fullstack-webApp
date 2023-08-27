@@ -26,20 +26,20 @@ export const useCartStore = create(
                             ? {
                                 ...item,
                                 quantity: item.quantity + product.quantity,
-                                price: item.price + product.price,
+                                price: parseInt(item.price.toString()) + parseInt(product.price.toString()),
                             }
                             : item
                     );
                     set((state) => ({
                         products: updatedProducts,
                         totalItems: state.totalItems + item.quantity,
-                        totalPrice: state.totalPrice + item.price,
+                        totalPrice: parseInt(state.totalPrice.toString()) + parseInt(item.price.toString()),
                     }));
                 } else {
                     set((state) => ({
                         products: [...state.products, item],
                         totalItems: state.totalItems + item.quantity,
-                        totalPrice: state.totalPrice + item.price,
+                        totalPrice: parseInt(state.totalPrice.toString()) + parseInt(item.price.toString())
                     }));
                 }
             },

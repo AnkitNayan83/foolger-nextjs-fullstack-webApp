@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import Menubar from "./Menubar";
 import Link from "next/link";
 import { Button } from "./ui/button";
@@ -9,6 +9,10 @@ import { useCartStore } from "@/utils/store";
 
 const Navbar = () => {
   const { totalItems } = useCartStore();
+
+  useEffect(() => {
+    useCartStore.persist.rehydrate();
+  }, []);
   return (
     <div className="flex items-center justify-between sticky top-0 bg-white text-red-500 px-5 md:px-20 h-[60px] font-semibold border-b-[2px] border-b-gray-300">
       {/* left */}

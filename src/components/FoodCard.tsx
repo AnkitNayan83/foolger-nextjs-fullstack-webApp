@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/utils/store";
 
@@ -23,6 +23,10 @@ const FoodCard = ({ img, name, desc, price, isVeg, id }: prop) => {
     setIsclicked(true);
     addToCart({ id, img, title: name, price, quantity: count, isVeg, desc });
   };
+
+  useEffect(() => {
+    useCartStore.persist.rehydrate();
+  }, []);
 
   const handelClick = (type: string): void => {
     if (type === "add") {

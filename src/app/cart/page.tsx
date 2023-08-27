@@ -4,7 +4,7 @@ import CartCard from "@/components/CartCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCartStore } from "@/utils/store";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Cart = () => {
   const [applied, setApplied] = useState(false);
@@ -21,6 +21,10 @@ const Cart = () => {
       alert("Invalid coupon code");
     }
   };
+
+  useEffect(() => {
+    useCartStore.persist.rehydrate();
+  }, []);
 
   if (products.length === 0) {
     return (
