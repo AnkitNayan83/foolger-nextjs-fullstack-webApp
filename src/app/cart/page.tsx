@@ -4,13 +4,17 @@ import CartCard from "@/components/CartCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCartStore } from "@/utils/store";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const [applied, setApplied] = useState(false);
   const [coupon, setCoupon] = useState("");
   const { products, totalItems, totalPrice } = useCartStore();
   const [amount, setAmount] = useState(totalPrice + 10);
+  const router = useRouter();
 
   const hadelCoupon = (cc: string): void => {
     if (cc === "WELCOME20") {
@@ -25,6 +29,33 @@ const Cart = () => {
   useEffect(() => {
     useCartStore.persist.rehydrate();
   }, []);
+
+  const { data: session } = useSession();
+
+  const handelClick = async () => {
+    if (!session) {
+      router.push("/login");
+      toast.error("Please login to complete your purchase");
+      return;
+    } else {
+      try {
+        const res = await fetch("http://localhost:300/api/orders", {
+          method: "POST",
+          headers: { "Contnt-Type": "application/json" },
+          body: JSON.stringify({
+            price: totalPrice,
+            products,
+            status: "Pending",
+            userEmail: session.user.email,
+          }),
+        });
+        const data = await res.json();
+        router.push(`/pay/${data.id}`);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   if (products.length === 0) {
     return (
@@ -83,7 +114,7 @@ const Cart = () => {
                 Apply
               </Button>
             </div>
-            <Button>Buy Now</Button>
+            <Button onClick={handelClick}>Buy Now</Button>
           </div>
         </div>
       </div>
